@@ -113,20 +113,50 @@
   }
   
   .link-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #2d2d56;
-    gap: 1rem;
-    padding: 1rem;
-    border-radius: 20px;
-    box-shadow: 8px 10px 0 #0f0f25;
-    border: 2px solid #2d2d56;
+    --border-width: 1px;
+
+  position: relative;
+  display: flex;
+  justify-content: space-between;;
+  align-items: center;
+  font-family: Lato, sans-serif;
+  text-transform: uppercase;
+  color: #fff0c7;
+  background: #2d2d56;
+  border-radius: 10px;
+  padding: 1rem;
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: calc(-1 * var(--border-width));
+    left: calc(-1 * var(--border-width));
+    z-index: -1;
+    width: calc(100% + var(--border-width) * 2);
+    height: calc(100% + var(--border-width) * 2);
+    background: linear-gradient(
+      60deg,
+      #fff0c7,
+      #fd9346,
+      #fd9346,
+      #ff6200,
+      hsl(44, 85%, 66%),
+      #fd9346,
+      #fd9346,
+      #fff0c7
+    );
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: 10px;
+    animation: moveGradient 4s alternate infinite;
   }
-  
-  .link-card:hover {
-    border: 2px solid #fdb777;
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
   }
+}
   
   .links .link-icon {
     background-image: linear-gradient(to top, #ff6200, #fdb777);
